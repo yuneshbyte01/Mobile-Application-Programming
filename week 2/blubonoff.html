@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <img src="https://toppng.com/uploads/preview/light-bulb-on-off-png-11553940171g57vp25a8k.png" id="demo" width="200" height="300">
+
+    <button type="button" onclick="myFunction()">ON/OFF</button>
+
+    <script>
+        function myFunction() {
+            var img = document.getElementById("demo");
+
+            var bulbon = "https://toppng.com/uploads/preview/light-bulb-on-off-png-11553940171g57vp25a8k.png";
+            var bulboff = "https://c8.alamy.com/comp/2A5C5XA/vector-3d-realistic-golden-off-light-bulb-icon-closeup-isolated-on-white-background-design-template-clipart-glowing-incandescent-filament-lamps-2A5C5XA.jpg";
+            
+            if (img.src === bulboff) {
+                img.src = bulbon;
+            } else {
+                img.src = bulboff;
+            }
+        }
+    </script>
+</body>
+</html>
