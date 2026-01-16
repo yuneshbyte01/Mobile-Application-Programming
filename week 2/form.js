@@ -7,6 +7,13 @@ function getInputValues() {
 function addition() {
     let [a, b] = getInputValues();
     let c = a + b;
+
+    if (c > 50) {
+        document.getElementById("display_message").innerHTML = "The result is greater than 50.";
+    } else {
+        document.getElementById("display_message").innerHTML = "The result is 50 or less.";
+    }
+
     document.getElementById("display_addition").innerHTML = "The sum of " + a + " and " + b + " is: " + c;
 }
 
