@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Task 3</title>
+
+<style>
+  /* Flex container */
+  .gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px;
+    justify-content: center;
+  }
+
+  /* Image base size */
+  .gallery img {
+    width: 100%;
+    max-width: 400px;   /* original image width */
+    height: 500px;
+  }
+
+  /* 2 columns */
+  @media screen and (min-width: 400px) {
+    .gallery img {
+      /* flex: 0 0 calc(50% - 2px); */
+      width: calc(50% - 2px);
+    }
+  }
+
+  /* 4 columns */
+  @media screen and (min-width: 760px) {
+    .gallery img {
+      /* flex: 0 0 calc(25% - 2px); */
+      width: calc(25% - 2px);
+    }
+  }
+</style>
+</head>
+
+<body>
+  <div class="gallery">
+    <img src="https://prismflow.com/wp-content/uploads/2017/11/400x500.png">
+    <img src="https://prismflow.com/wp-content/uploads/2017/11/400x500.png">
+    <img src="https://prismflow.com/wp-content/uploads/2017/11/400x500.png">
+    <img src="https://prismflow.com/wp-content/uploads/2017/11/400x500.png">
+    <img src="https://prismflow.com/wp-content/uploads/2017/11/400x500.png">
+    <img src="https://prismflow.com/wp-content/uploads/2017/11/400x500.png">
+    <img src="https://prismflow.com/wp-content/uploads/2017/11/400x500.png">
+    <img src="https://prismflow.com/wp-content/uploads/2017/11/400x500.png">
+    <img src="https://prismflow.com/wp-content/uploads/2017/11/400x500.png">
+    <img src="https://prismflow.com/wp-content/uploads/2017/11/400x500.png">
+  </div>
+</body>
+</html>
