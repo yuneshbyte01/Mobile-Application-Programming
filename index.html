@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firebase Demo</title>
+</head>
+
+<body>
+
+    <h1>Firebase Demo</h1>
+
+    <h1>Firebase Realtime Database CRUD</h1>
+
+    <h2>Create / Write User</h2>
+
+    <label for="create-id">User ID:</label>
+    <input type="text" id="create-id" placeholder="User ID" /> <br>
+
+    <label for="create-first-name">First Name:</label>
+    <input type="text" id="create-first-name" placeholder="First Name" /> <br>
+
+    <label for="create-last-name">Last Name:</label>
+    <input type="text" id="create-last-name" placeholder="Last Name" /> <br>
+
+    <label for="create-age">Age:</label>
+    <input type="number" id="create-age" placeholder="Age" /> <br>
+
+    <label>Gender:</label>
+    <input type="radio" name="gender" id="create-gender-male" value="male" />
+    <label for="create-gender-male">Male</label>
+
+    <input type="radio" name="gender" id="create-gender-female" value="female" />
+    <label for="create-gender-female">Female</label> <br>
+
+    <label for="create-email">Email:</label>
+    <input type="email" id="create-email" placeholder="Email" /> <br>
+
+    <label for="create-phone">Phone:</label>
+    <input type="tel" id="create-phone" placeholder="Phone Number" /> <br>
+
+    <label for="create-address">Address:</label>
+    <input type="text" id="create-address" placeholder="Address" /> <br>
+
+    <label for="create-academic-qualification">Academic Qualification:</label>
+    <input type="text" id="create-academic-qualification" placeholder="Academic Qualification" /> <br>
+
+    <label for="create-job-title">Job Title:</label>
+    <input type="text" id="create-job-title" placeholder="Job Title" /> <br>
+
+    <button onclick="writeUserData(
+    document.getElementById('create-id').value,
+    document.getElementById('create-first-name').value,
+    document.getElementById('create-last-name').value,
+    document.getElementById('create-age').value,
+    document.getElementById('create-gender-male').checked ? 'male' : 'female',
+    document.getElementById('create-email').value,
+    document.getElementById('create-phone').value,
+    document.getElementById('create-address').value,
+    document.getElementById('create-academic-qualification').value,
+    document.getElementById('create-job-title').value)">Write User</button>
+
+    <hr>
+
+    <h2>Read Users</h2>
+    <button onclick="readUser()">Read All Users (Check Console)</button>
+
+    <h2>Update User</h2>
+
+    <label for="update-id">User ID:</label>
+    <input type="text" id="update-id" placeholder="User ID" /> <br>
+
+    <label for="update-first-name">First Name:</label>
+    <input type="text" id="update-first-name" placeholder="First Name" /> <br>
+
+    <label for="update-last-name">Last Name:</label>
+    <input type="text" id="update-last-name" placeholder="Last Name" /> <br>
+
+    <label for="update-age">Age:</label>
+    <input type="number" id="update-age" placeholder="Age" /> <br>
+
+    <label>Gender:</label>
+    <input type="radio" name="gender" id="update-gender-male" value="male" />
+    <label for="update-gender-male">Male</label>
+
+    <input type="radio" name="gender" id="update-gender-female" value="female" />
+    <label for="update-gender-female">Female</label> <br>
+
+    <label for="update-email">Email:</label>
+    <input type="email" id="update-email" placeholder="Email" /> <br>
+
+    <label for="update-phone">Phone:</label>
+    <input type="tel" id="update-phone" placeholder="Phone Number" /> <br>
+
+    <label for="update-address">Address:</label>
+    <input type="text" id="update-address" placeholder="Address" /> <br>
+
+    <label for="update-academic-qualification">Academic Qualification:</label>
+    <input type="text" id="update-academic-qualification" placeholder="Academic Qualification" /> <br>
+
+    <label for="update-job-title">Job Title:</label>
+    <input type="text" id="update-job-title" placeholder="Job Title" /> <br>
+
+    <button onclick="updateUserData(
+    document.getElementById('update-id').value,
+    {
+      firstName: document.getElementById('update-first-name').value,
+      lastName: document.getElementById('update-last-name').value,
+      age: document.getElementById('update-age').value,
+      gender: document.getElementById('update-gender-male').checked ? 'male' : 'female',
+      email: document.getElementById('update-email').value,
+      phone: document.getElementById('update-phone').value,
+      address: document.getElementById('update-address').value,
+      academicQualification: document.getElementById('update-academic-qualification').value,
+      jobTitle: document.getElementById('update-job-title').value
+    })">Update User</button>
+
+    <h2>Delete User</h2>
+    <input type="text" id="delete-id" placeholder="User ID" />
+    <button onclick="deleteUserData(document.getElementById('delete-id').value)">Delete User</button>
+
+    <script type="module" src="script.js"></script>
+
+</body>
+
+</html>
