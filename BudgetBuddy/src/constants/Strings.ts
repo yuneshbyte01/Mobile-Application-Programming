@@ -7,6 +7,7 @@ export const Strings = {
 
   // Route names (PascalCase)
   routes: {
+    GetStarted: 'GetStarted',
     Dashboard: 'Dashboard',
     Transactions: 'Transactions',
     Budgets: 'Budgets',
@@ -22,6 +23,24 @@ export const Strings = {
     SignUp: 'SignUp',
     LogIn: 'LogIn',
     ForgotPassword: 'ForgotPassword',
+  },
+
+  // Auth copy
+  auth: {
+    getStartedTitle: 'Welcome to Budget Buddy',
+    getStartedSubtitle: 'Track spending, set budgets, and manage subscriptions in one place.',
+    signUp: 'Sign Up',
+    logIn: 'Log In',
+    forgotPassword: 'Forgot Password?',
+    noAccount: "Don't have an account? Sign up",
+    hasAccount: 'Already have an account? Log in',
+    name: 'Name',
+    email: 'Email',
+    password: 'Password',
+    resetPasswordTitle: 'Reset Password',
+    resetPasswordSubtitle: 'Enter your email and we will send you a link to reset your password.',
+    sendResetLink: 'Send Reset Link',
+    backToLogIn: 'Back to Log In',
   },
 
   // Tab labels (shown under icons)

@@ -17,6 +17,7 @@ const Tab = createBottomTabNavigator();
 function TabIcon({ focused, label }: { focused: boolean; label: string }) {
   const letter = label.charAt(0);
   return (
+    // eslint-disable-next-line react-native/no-inline-styles
     <Text style={{ fontSize: 18, fontWeight: '600', color: focused ? Colors.brand.primary : Colors.neutral.muted }}>
       {letter}
     </Text>
@@ -38,6 +39,7 @@ export default function BottomTabNavigator() {
         component={DashboardScreen}
         options={{
           tabBarLabel: Strings.tabs.Dashboard,
+          // eslint-disable-next-line react/no-unstable-nested-components
           tabBarIcon: ({ focused }) => <TabIcon focused={focused} label={Strings.tabs.Dashboard} />,
         }}
       />
@@ -46,6 +48,7 @@ export default function BottomTabNavigator() {
         component={TransactionsScreen}
         options={{
           tabBarLabel: Strings.tabs.Transactions,
+          // eslint-disable-next-line react/no-unstable-nested-components
           tabBarIcon: ({ focused }) => <TabIcon focused={focused} label={Strings.tabs.Transactions} />,
         }}
       />
@@ -54,6 +57,7 @@ export default function BottomTabNavigator() {
         component={BudgetsScreen}
         options={{
           tabBarLabel: Strings.tabs.Budgets,
+          // eslint-disable-next-line react/no-unstable-nested-components
           tabBarIcon: ({ focused }) => <TabIcon focused={focused} label={Strings.tabs.Budgets} />,
         }}
       />
@@ -62,6 +66,7 @@ export default function BottomTabNavigator() {
         component={SubscriptionsScreen}
         options={{
           tabBarLabel: Strings.tabs.Subscriptions,
+          // eslint-disable-next-line react/no-unstable-nested-components
           tabBarIcon: ({ focused }) => <TabIcon focused={focused} label={Strings.tabs.Subscriptions} />,
         }}
       />
@@ -70,6 +75,7 @@ export default function BottomTabNavigator() {
         component={ReportsScreen}
         options={{
           tabBarLabel: Strings.tabs.Reports,
+          // eslint-disable-next-line react/no-unstable-nested-components
           tabBarIcon: ({ focused }) => <TabIcon focused={focused} label={Strings.tabs.Reports} />,
         }}
       />
@@ -78,6 +84,7 @@ export default function BottomTabNavigator() {
         component={SettingsScreen}
         options={{
           tabBarLabel: Strings.tabs.Settings,
+          // eslint-disable-next-line react/no-unstable-nested-components
           tabBarIcon: ({ focused }) => <TabIcon focused={focused} label={Strings.tabs.Settings} />,
         }}
       />
