@@ -1,14 +1,17 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import SafeScreenView from '../components/SafeScreenView';
 import { screenContainer } from '../styles/commonStyles';
 import { Typography } from '../styles/tokens';
 import { Colors } from '../constants/Colors';
 
 export default function SubscriptionsScreen() {
   return (
-    <View style={[styles.container, screenContainer]}>
+    <SafeScreenView>
+      <View style={[styles.container, screenContainer]}>
       <Text style={styles.title}>Subscriptions</Text>
-    </View>
+      </View>
+    </SafeScreenView>
   );
 }
 

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import SafeScreenView from '../components/SafeScreenView';
 import { logOut } from '../services/authService';
-import { screenContainer, secondaryButton } from '../styles/commonStyles';
+import { screenContainer, secondaryButton, cardStyle } from '../styles/commonStyles';
 import { Typography } from '../styles/tokens';
 import { Colors } from '../constants/Colors';
 import { Space } from '../styles/tokens';
@@ -22,17 +23,21 @@ export default function SettingsScreen() {
   };
 
   return (
-    <View style={[styles.container, screenContainer]}>
-      <Text style={styles.title}>Settings</Text>
-      <TouchableOpacity
-        style={[secondaryButton, styles.logOut]}
-        onPress={handleLogOut}
-        disabled={loading}
-        activeOpacity={0.8}
-      >
-        <Text style={styles.logOutText}>Log Out</Text>
-      </TouchableOpacity>
-    </View>
+    <SafeScreenView>
+      <View style={[styles.container, screenContainer]}>
+        <Text style={styles.title}>Settings</Text>
+        <View style={[styles.card, cardStyle]}>
+        <TouchableOpacity
+          style={[secondaryButton, styles.logOut]}
+          onPress={handleLogOut}
+          disabled={loading}
+          activeOpacity={0.8}
+        >
+          <Text style={styles.logOutText}>Log Out</Text>
+        </TouchableOpacity>
+        </View>
+      </View>
+    </SafeScreenView>
   );
 }
 
@@ -45,8 +50,11 @@ const styles = StyleSheet.create({
     color: Colors.neutral.textPrimary,
     marginBottom: Space.xl,
   },
+  card: {
+    maxWidth: 200,
+  },
   logOut: {
-    alignSelf: 'flex-start',
+    alignSelf: 'stretch',
   },
   logOutText: {
     ...Typography.button,

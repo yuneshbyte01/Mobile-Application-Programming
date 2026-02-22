@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import SafeScreenView from '../components/SafeScreenView';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import type { AuthStackParamList } from '../navigation/types';
 import { screenContainer, primaryButton, secondaryButton } from '../styles/commonStyles';
@@ -14,7 +15,8 @@ export default function GetStartedScreen() {
   const navigation = useNavigation<Nav>();
 
   return (
-    <View style={[styles.container, screenContainer]}>
+    <SafeScreenView edges={['top', 'left', 'right']}>
+      <View style={[styles.container, screenContainer]}>
       <Text style={styles.title}>{Strings.auth.getStartedTitle}</Text>
       <Text style={styles.subtitle}>{Strings.auth.getStartedSubtitle}</Text>
       <TouchableOpacity
@@ -31,7 +33,8 @@ export default function GetStartedScreen() {
       >
         <Text style={styles.secondaryButtonText}>{Strings.auth.logIn}</Text>
       </TouchableOpacity>
-    </View>
+      </View>
+    </SafeScreenView>
   );
 }
 
@@ -50,6 +53,7 @@ const styles = StyleSheet.create({
     ...Typography.body,
     color: Colors.neutral.textSecondary,
     marginBottom: 32,
+    lineHeight: 22,
   },
   button: {
     marginBottom: 12,

@@ -8,6 +8,7 @@ export type AuthStackParamList = {
 export type MainStackParamList = {
   MainTabs: undefined;
   AddTransaction: undefined;
+  EditTransaction: { transactionId: string };
 };
 
 export type RootStackParamList = {

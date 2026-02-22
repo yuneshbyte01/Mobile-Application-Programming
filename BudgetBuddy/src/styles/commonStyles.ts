@@ -23,6 +23,17 @@ export const cardStyle = {
   ...Shadow.card,
 };
 
+// List item card: for transaction rows
+export const listCardStyle = {
+  padding: Space.lg,
+  borderRadius: Radius.md,
+  backgroundColor: Colors.neutral.surface,
+  borderWidth: 1,
+  borderColor: Colors.neutral.border,
+  marginBottom: Space.sm,
+  ...Shadow.card,
+};
+
 // Button base: min height 48px, touch target friendly
 export const buttonBase = {
   minHeight: Size.inputHeight,

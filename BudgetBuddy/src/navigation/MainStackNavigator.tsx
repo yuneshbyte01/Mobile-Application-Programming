@@ -9,6 +9,7 @@ import type { MainStackParamList } from './types';
 
 import BottomTabNavigator from './BottomTabNavigator';
 import AddTransactionScreen from '../screens/AddTransactionScreen';
+import EditTransactionScreen from '../screens/EditTransactionScreen';
 
 const Stack = createNativeStackNavigator<MainStackParamList>();
 
@@ -24,6 +25,11 @@ export default function MainStackNavigator() {
         name={Strings.routes.AddTransaction}
         component={AddTransactionScreen}
         options={{ title: 'Add Transaction' }}
+      />
+      <Stack.Screen
+        name={Strings.routes.EditTransaction}
+        component={EditTransactionScreen}
+        options={{ title: 'Edit Transaction' }}
       />
     </Stack.Navigator>
   );

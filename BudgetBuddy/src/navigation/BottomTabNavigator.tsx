@@ -32,6 +32,11 @@ export default function BottomTabNavigator() {
         tabBarInactiveTintColor: Colors.neutral.muted,
         tabBarShowLabel: true,
         headerShown: false,
+        tabBarStyle: {
+          backgroundColor: Colors.neutral.surface,
+          borderTopColor: Colors.neutral.border,
+        },
+        tabBarLabelStyle: { fontSize: 11, fontWeight: '500' },
       }}
     >
       <Tab.Screen

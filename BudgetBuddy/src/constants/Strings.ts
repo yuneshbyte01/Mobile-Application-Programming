@@ -43,6 +43,28 @@ export const Strings = {
     backToLogIn: 'Back to Log In',
   },
 
+  // Transaction copy
+  transactions: {
+    emptyTitle: 'No transactions yet',
+    emptySubtitle: 'Tap below to add your first transaction.',
+    addTransaction: 'Add Transaction',
+    amount: 'Amount',
+    type: 'Type',
+    category: 'Category',
+    date: 'Date',
+    notes: 'Notes (optional)',
+    income: 'Income',
+    expense: 'Expense',
+    save: 'Save',
+  },
+
+  // Dashboard copy
+  dashboard: {
+    totalIncome: 'Total Income',
+    totalExpense: 'Total Expense',
+    balance: 'Balance',
+  },
+
   // Tab labels (shown under icons)
   tabs: {
     Dashboard: 'Dashboard',
