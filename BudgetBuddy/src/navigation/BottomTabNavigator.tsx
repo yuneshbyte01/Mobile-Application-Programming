@@ -1,40 +1,50 @@
 import React from 'react';
-import { Text } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Strings } from '../constants/Strings';
-import { Colors } from '../constants/Colors';
+import { useTheme } from '../context/SettingsContext';
+import { Icons } from '../constants/Icons';
 
 import DashboardScreen from '../screens/DashboardScreen';
 import TransactionsScreen from '../screens/TransactionsScreen';
 import BudgetsScreen from '../screens/BudgetsScreen';
 import SubscriptionsScreen from '../screens/SubscriptionsScreen';
-import ReportsScreen from '../screens/ReportsScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 
 const Tab = createBottomTabNavigator();
 
-// Simple tab icon (no icon library): first letter of tab name
-function TabIcon({ focused, label }: { focused: boolean; label: string }) {
-  const letter = label.charAt(0);
+function TabIcon({
+  focused,
+  name,
+  nameOutline,
+  color,
+}: {
+  focused: boolean;
+  name: string;
+  nameOutline: string;
+  color: string;
+}) {
   return (
-    // eslint-disable-next-line react-native/no-inline-styles
-    <Text style={{ fontSize: 18, fontWeight: '600', color: focused ? Colors.brand.primary : Colors.neutral.muted }}>
-      {letter}
-    </Text>
+    <Ionicons
+      name={focused ? (name as any) : (nameOutline as any)}
+      size={24}
+      color={color}
+    />
   );
 }
 
 export default function BottomTabNavigator() {
+  const { colors } = useTheme();
   return (
     <Tab.Navigator
       screenOptions={{
-        tabBarActiveTintColor: Colors.brand.primary,
-        tabBarInactiveTintColor: Colors.neutral.muted,
+        tabBarActiveTintColor: colors.brand.primary,
+        tabBarInactiveTintColor: colors.neutral.textSecondary,
         tabBarShowLabel: true,
         headerShown: false,
         tabBarStyle: {
-          backgroundColor: Colors.neutral.surface,
-          borderTopColor: Colors.neutral.border,
+          backgroundColor: colors.neutral.surface,
+          borderTopColor: colors.neutral.border,
         },
         tabBarLabelStyle: { fontSize: 11, fontWeight: '500' },
       }}
@@ -45,7 +55,14 @@ export default function BottomTabNavigator() {
         options={{
           tabBarLabel: Strings.tabs.Dashboard,
           // eslint-disable-next-line react/no-unstable-nested-components
-          tabBarIcon: ({ focused }) => <TabIcon focused={focused} label={Strings.tabs.Dashboard} />,
+          tabBarIcon: ({ focused }) => (
+            <TabIcon
+              focused={focused}
+              name={Icons.tab.dashboard}
+              nameOutline={Icons.tab.dashboardOutline}
+              color={focused ? colors.brand.primary : colors.neutral.textSecondary}
+            />
+          ),
         }}
       />
       <Tab.Screen
@@ -54,7 +71,14 @@ export default function BottomTabNavigator() {
         options={{
           tabBarLabel: Strings.tabs.Transactions,
           // eslint-disable-next-line react/no-unstable-nested-components
-          tabBarIcon: ({ focused }) => <TabIcon focused={focused} label={Strings.tabs.Transactions} />,
+          tabBarIcon: ({ focused }) => (
+            <TabIcon
+              focused={focused}
+              name={Icons.tab.transactions}
+              nameOutline={Icons.tab.transactionsOutline}
+              color={focused ? colors.brand.primary : colors.neutral.textSecondary}
+            />
+          ),
         }}
       />
       <Tab.Screen
@@ -63,7 +87,14 @@ export default function BottomTabNavigator() {
         options={{
           tabBarLabel: Strings.tabs.Budgets,
           // eslint-disable-next-line react/no-unstable-nested-components
-          tabBarIcon: ({ focused }) => <TabIcon focused={focused} label={Strings.tabs.Budgets} />,
+          tabBarIcon: ({ focused }) => (
+            <TabIcon
+              focused={focused}
+              name={Icons.tab.budgets}
+              nameOutline={Icons.tab.budgetsOutline}
+              color={focused ? colors.brand.primary : colors.neutral.textSecondary}
+            />
+          ),
         }}
       />
       <Tab.Screen
@@ -72,16 +103,14 @@ export default function BottomTabNavigator() {
         options={{
           tabBarLabel: Strings.tabs.Subscriptions,
           // eslint-disable-next-line react/no-unstable-nested-components
-          tabBarIcon: ({ focused }) => <TabIcon focused={focused} label={Strings.tabs.Subscriptions} />,
-        }}
-      />
-      <Tab.Screen
-        name={Strings.routes.Reports}
-        component={ReportsScreen}
-        options={{
-          tabBarLabel: Strings.tabs.Reports,
-          // eslint-disable-next-line react/no-unstable-nested-components
-          tabBarIcon: ({ focused }) => <TabIcon focused={focused} label={Strings.tabs.Reports} />,
+          tabBarIcon: ({ focused }) => (
+            <TabIcon
+              focused={focused}
+              name={Icons.tab.subscriptions}
+              nameOutline={Icons.tab.subscriptionsOutline}
+              color={focused ? colors.brand.primary : colors.neutral.textSecondary}
+            />
+          ),
         }}
       />
       <Tab.Screen
@@ -90,7 +119,14 @@ export default function BottomTabNavigator() {
         options={{
           tabBarLabel: Strings.tabs.Settings,
           // eslint-disable-next-line react/no-unstable-nested-components
-          tabBarIcon: ({ focused }) => <TabIcon focused={focused} label={Strings.tabs.Settings} />,
+          tabBarIcon: ({ focused }) => (
+            <TabIcon
+              focused={focused}
+              name={Icons.tab.settings}
+              nameOutline={Icons.tab.settingsOutline}
+              color={focused ? colors.brand.primary : colors.neutral.textSecondary}
+            />
+          ),
         }}
       />
     </Tab.Navigator>

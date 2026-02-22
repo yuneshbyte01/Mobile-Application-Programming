@@ -12,15 +12,19 @@ import {
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useApp } from '../context/AppContext';
+import { useTheme } from '../context/SettingsContext';
 import { screenContainer, primaryButton } from '../styles/commonStyles';
 import { Typography } from '../styles/tokens';
 import { Colors } from '../constants/Colors';
 import { Strings } from '../constants/Strings';
 import { TRANSACTION_CATEGORIES } from '../constants/transactionConstants';
 import { Space, Radius, Size } from '../styles/tokens';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import { Icons } from '../constants/Icons';
 
 export default function AddTransactionScreen() {
   const navigation = useNavigation();
+  const { colors } = useTheme();
   const { addTransaction } = useApp();
   const [amount, setAmount] = useState('');
   const [type, setType] = useState<'income' | 'expense'>('expense');
@@ -62,7 +66,7 @@ export default function AddTransactionScreen() {
     >
       <ScrollView
         style={styles.scroll}
-        contentContainerStyle={[screenContainer, styles.content]}
+        contentContainerStyle={[screenContainer, styles.content, { backgroundColor: colors.neutral.bg }]}
         keyboardShouldPersistTaps="handled"
         showsVerticalScrollIndicator={false}
       >
@@ -147,7 +151,10 @@ export default function AddTransactionScreen() {
           {loading ? (
             <ActivityIndicator color={Colors.neutral.surface} size="small" />
           ) : (
-            <Text style={styles.saveText}>{Strings.transactions.save}</Text>
+            <>
+              <Ionicons name={Icons.action.save as any} size={20} color={Colors.neutral.surface} />
+              <Text style={styles.saveText}>{Strings.transactions.save}</Text>
+            </>
           )}
         </TouchableOpacity>
       </ScrollView>

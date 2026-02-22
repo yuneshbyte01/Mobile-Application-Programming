@@ -12,7 +12,9 @@ import {
   Platform,
   ActivityIndicator,
   ScrollView,
+  Image,
 } from 'react-native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import { logIn } from '../services/authService';
 import { screenContainer, primaryButton } from '../styles/commonStyles';
 import { Typography } from '../styles/tokens';
@@ -26,13 +28,14 @@ export default function LogInScreen() {
   const navigation = useNavigation<Nav>();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
   const handleLogIn = async () => {
     setError('');
     if (!email.trim()) {
-      setError('Please enter your email.');
+      setError('Please enter your email address.');
       return;
     }
     if (!password) {
@@ -57,35 +60,62 @@ export default function LogInScreen() {
       <ScrollView
         contentContainerStyle={[styles.scrollContent, screenContainer]}
         keyboardShouldPersistTaps="handled"
+        showsVerticalScrollIndicator={false}
       >
+        <Image
+          source={require('../../icons/logo.png')}
+          style={styles.logo}
+          resizeMode="contain"
+        />
+        <Text style={styles.appName}>{Strings.appName}</Text>
         <Text style={styles.title}>{Strings.auth.logIn}</Text>
-        <TextInput
-          style={styles.input}
-          placeholder={Strings.auth.email}
-          placeholderTextColor={Colors.neutral.textSecondary}
-          value={email}
-          onChangeText={setEmail}
-          keyboardType="email-address"
-          autoCapitalize="none"
-          autoCorrect={false}
-          editable={!loading}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder={Strings.auth.password}
-          placeholderTextColor={Colors.neutral.textSecondary}
-          value={password}
-          onChangeText={setPassword}
-          secureTextEntry
-          editable={!loading}
-        />
+
+        <View style={styles.inputWrap}>
+          <Ionicons name="mail-outline" size={20} color={Colors.neutral.textSecondary} style={styles.inputIcon} />
+          <TextInput
+            style={styles.input}
+            placeholder={Strings.auth.emailAddress}
+            placeholderTextColor={Colors.neutral.textSecondary}
+            value={email}
+            onChangeText={setEmail}
+            keyboardType="email-address"
+            autoCapitalize="none"
+            autoCorrect={false}
+            editable={!loading}
+          />
+        </View>
+        <View style={styles.inputWrap}>
+          <Ionicons name="lock-closed-outline" size={20} color={Colors.neutral.textSecondary} style={styles.inputIcon} />
+          <TextInput
+            style={styles.input}
+            placeholder={Strings.auth.password}
+            placeholderTextColor={Colors.neutral.textSecondary}
+            value={password}
+            onChangeText={setPassword}
+            secureTextEntry={!showPassword}
+            editable={!loading}
+          />
+          <TouchableOpacity
+            onPress={() => setShowPassword(!showPassword)}
+            style={styles.eyeBtn}
+            hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+          >
+            <Ionicons
+              name={showPassword ? 'eye-off-outline' : 'eye-outline'}
+              size={20}
+              color={Colors.neutral.textSecondary}
+            />
+          </TouchableOpacity>
+        </View>
+
         <TouchableOpacity
           onPress={() => navigation.navigate('ForgotPassword')}
           style={styles.forgotLink}
           disabled={loading}
         >
-          <Text style={styles.linkText}>{Strings.auth.forgotPassword}</Text>
+          <Text style={styles.forgotText}>{Strings.auth.forgotPassword}</Text>
         </TouchableOpacity>
+
         {error ? <Text style={styles.error}>{error}</Text> : null}
         <TouchableOpacity
           style={[primaryButton, styles.button]}
@@ -96,16 +126,21 @@ export default function LogInScreen() {
           {loading ? (
             <ActivityIndicator color={Colors.neutral.surface} size="small" />
           ) : (
-            <Text style={styles.buttonText}>{Strings.auth.logIn}</Text>
+            <>
+              <Text style={styles.buttonText}>{Strings.auth.logIn}</Text>
+              <Ionicons name="arrow-forward" size={20} color={Colors.neutral.surface} />
+            </>
           )}
         </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => navigation.replace('SignUp')}
-          style={styles.link}
-          disabled={loading}
-        >
-          <Text style={styles.linkText}>{Strings.auth.noAccount}</Text>
-        </TouchableOpacity>
+        <View style={styles.linkWrap}>
+          <Text style={styles.linkPrompt}>{Strings.auth.noAccount}</Text>
+          <TouchableOpacity
+            onPress={() => navigation.replace('SignUp')}
+            disabled={loading}
+          >
+            <Text style={styles.linkText}>{Strings.auth.noAccountLink}</Text>
+          </TouchableOpacity>
+        </View>
       </ScrollView>
     </KeyboardAvoidingView>
   );
@@ -117,30 +152,58 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     paddingHorizontal: 24,
     paddingTop: 24,
+    paddingBottom: 32,
+  },
+  logo: {
+    width: 96,
+    height: 96,
+    alignSelf: 'center',
+    marginBottom: 8,
+  },
+  appName: {
+    ...Typography.h1,
+    fontWeight: '700',
+    color: Colors.neutral.textPrimary,
+    textAlign: 'center',
+    marginBottom: 4,
   },
   title: {
-    ...Typography.h1,
+    ...Typography.h2,
+    fontWeight: '700',
     color: Colors.neutral.textPrimary,
+    textAlign: 'center',
     marginBottom: 24,
   },
-  input: {
+  inputWrap: {
+    flexDirection: 'row',
+    alignItems: 'center',
     height: Size.inputHeight,
     borderRadius: Radius.md,
     borderWidth: 1,
     borderColor: Colors.neutral.border,
     backgroundColor: Colors.neutral.surface,
-    paddingHorizontal: 12,
     marginBottom: 12,
+    paddingHorizontal: 12,
+  },
+  inputIcon: {
+    marginRight: 12,
+  },
+  input: {
+    flex: 1,
     ...Typography.body,
     color: Colors.neutral.textPrimary,
+    paddingVertical: 0,
+  },
+  eyeBtn: {
+    padding: Space.xs,
   },
   forgotLink: {
     alignSelf: 'flex-end',
     paddingVertical: Space.xs,
     marginBottom: 8,
   },
-  linkText: {
-    ...Typography.body,
+  forgotText: {
+    ...Typography.caption,
     color: Colors.brand.primary,
   },
   error: {
@@ -149,6 +212,10 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   button: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 8,
     marginTop: 8,
     marginBottom: 16,
   },
@@ -156,8 +223,19 @@ const styles = StyleSheet.create({
     ...Typography.button,
     color: Colors.neutral.surface,
   },
-  link: {
-    alignSelf: 'center',
-    padding: Space.sm,
+  linkWrap: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexWrap: 'wrap',
+  },
+  linkPrompt: {
+    ...Typography.body,
+    color: Colors.neutral.textSecondary,
+  },
+  linkText: {
+    ...Typography.body,
+    fontWeight: '600',
+    color: Colors.brand.primary,
   },
 });

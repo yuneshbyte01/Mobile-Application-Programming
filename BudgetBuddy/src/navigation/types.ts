@@ -9,6 +9,10 @@ export type MainStackParamList = {
   MainTabs: undefined;
   AddTransaction: undefined;
   EditTransaction: { transactionId: string };
+  AddBudget: undefined;
+  EditBudget: { budgetId: string };
+  AddSubscription: undefined;
+  EditSubscription: { subscriptionId: string };
 };
 
 export type RootStackParamList = {

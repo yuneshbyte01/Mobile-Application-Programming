@@ -23,3 +23,17 @@ export function formatDate(dateISO: string): string {
     day: 'numeric',
   });
 }
+
+/**
+ * Format dateISO for list items: "Today", "Yesterday", or "Apr 28".
+ */
+export function formatRelativeDate(dateISO: string): string {
+  const d = new Date(dateISO);
+  const today = new Date();
+  const yesterday = new Date(today);
+  yesterday.setDate(yesterday.getDate() - 1);
+
+  if (d.toDateString() === today.toDateString()) return 'Today';
+  if (d.toDateString() === yesterday.toDateString()) return 'Yesterday';
+  return d.toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
+}

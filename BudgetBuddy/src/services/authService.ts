@@ -7,6 +7,7 @@ import auth from '@react-native-firebase/auth';
 export type AuthUser = {
   uid: string;
   email: string | null;
+  displayName: string | null;
 };
 
 /**
@@ -28,12 +29,19 @@ function getFriendlyErrorMessage(errorCode: string): string {
   return messages[errorCode] ?? 'Something went wrong. Please try again.';
 }
 
-export async function signUp(email: string, password: string): Promise<AuthUser> {
+export async function signUp(email: string, password: string, displayName?: string): Promise<AuthUser> {
   try {
     const cred = await auth().createUserWithEmailAndPassword(email, password);
     const user = cred.user;
     if (!user) throw new Error('User not returned');
-    return { uid: user.uid, email: user.email ?? null };
+    if (displayName?.trim()) {
+      await user.updateProfile({ displayName: displayName.trim() });
+    }
+    return {
+      uid: user.uid,
+      email: user.email ?? null,
+      displayName: displayName?.trim() ?? user.displayName ?? null,
+    };
   } catch (err: unknown) {
     const code = err && typeof err === 'object' && 'code' in err ? String((err as { code: string }).code) : '';
     throw new Error(getFriendlyErrorMessage(code));
@@ -45,7 +53,7 @@ export async function logIn(email: string, password: string): Promise<AuthUser> 
     const cred = await auth().signInWithEmailAndPassword(email, password);
     const user = cred.user;
     if (!user) throw new Error('User not returned');
-    return { uid: user.uid, email: user.email ?? null };
+    return { uid: user.uid, email: user.email ?? null, displayName: user.displayName ?? null };
   } catch (err: unknown) {
     const code = err && typeof err === 'object' && 'code' in err ? String((err as { code: string }).code) : '';
     throw new Error(getFriendlyErrorMessage(code));
@@ -76,7 +84,7 @@ export async function resetPassword(email: string): Promise<void> {
 export function onAuthStateChanged(callback: (user: AuthUser | null) => void): () => void {
   const unsubscribe = auth().onAuthStateChanged((user) => {
     if (user) {
-      callback({ uid: user.uid, email: user.email ?? null });
+      callback({ uid: user.uid, email: user.email ?? null, displayName: user.displayName ?? null });
     } else {
       callback(null);
     }

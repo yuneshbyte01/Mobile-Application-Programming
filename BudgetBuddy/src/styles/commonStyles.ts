@@ -34,13 +34,15 @@ export const listCardStyle = {
   ...Shadow.card,
 };
 
-// Button base: min height 48px, touch target friendly
+// Button base: min height 48px, touch target friendly. Use flexDirection: 'row' and gap for icon+text.
 export const buttonBase = {
   minHeight: Size.inputHeight,
   minWidth: Size.touchMin,
   borderRadius: Radius.md,
+  flexDirection: 'row' as const,
   justifyContent: 'center' as const,
   alignItems: 'center' as const,
+  gap: 8,
 };
 
 // Primary button
