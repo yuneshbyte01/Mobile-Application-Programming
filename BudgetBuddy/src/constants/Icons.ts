@@ -1,0 +1,51 @@
+/**
+ * Central icon definitions using Ionicons.
+ * Use these constants for consistency across the app.
+ */
+export const Icons = {
+  tab: {
+    dashboard: 'home',
+    dashboardOutline: 'home-outline',
+    transactions: 'wallet',
+    transactionsOutline: 'wallet-outline',
+    budgets: 'pie-chart',
+    budgetsOutline: 'pie-chart-outline',
+    subscriptions: 'repeat',
+    subscriptionsOutline: 'repeat-outline',
+    reports: 'bar-chart',
+    reportsOutline: 'bar-chart-outline',
+    settings: 'settings',
+    settingsOutline: 'settings-outline',
+  },
+  action: {
+    add: 'add-circle',
+    addOutline: 'add-circle-outline',
+    save: 'checkmark-circle',
+    delete: 'trash-outline',
+    back: 'arrow-back',
+    edit: 'create-outline',
+  },
+  transaction: {
+    income: 'arrow-up-circle',
+    incomeOutline: 'arrow-up-circle-outline',
+    expense: 'arrow-down-circle',
+    expenseOutline: 'arrow-down-circle-outline',
+  },
+  category: 'pricetag-outline',
+  categoryFood: 'restaurant-outline',
+  categoryTransport: 'car-outline',
+  categoryShopping: 'cart-outline',
+  categoryBills: 'document-text-outline',
+  categoryEntertainment: 'game-controller-outline',
+  categoryHealth: 'medical-outline',
+  categorySalary: 'wallet-outline',
+  categoryOther: 'ellipse-outline',
+  calendar: 'calendar-outline',
+  currency: 'cash-outline',
+  chart: 'stats-chart-outline',
+  notifications: 'notifications-outline',
+  moon: 'moon-outline',
+  sunny: 'sunny-outline',
+  logOut: 'log-out-outline',
+  logIn: 'log-in-outline',
+} as const;

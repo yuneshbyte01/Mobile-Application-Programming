@@ -1,0 +1,206 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "meta": {
+      "project": "Budget & Subscription Manager",
+      "appName": "Budget Buddy",
+      "version": "1.0.0",
+      "notes": "Design tokens + component styling rules for consistent UI across screens."
+    },
+    "tokens": {
+      "color": {
+        "brand": {
+          "primary": "#6C63FF",
+          "secondary": "#2EC4B6",
+          "accent": "#4D96FF"
+        },
+        "neutral": {
+          "bg": "#F5F7FA",
+          "surface": "#FFFFFF",
+          "textPrimary": "#333333",
+          "textSecondary": "#777777",
+          "border": "#E0E0E0",
+          "muted": "#9AA0A6"
+        },
+        "status": {
+          "success": "#4CAF50",
+          "warning": "#FF9800",
+          "error": "#F44336",
+          "info": "#4D96FF"
+        },
+        "dark": {
+          "bg": "#121212",
+          "surface": "#1E1E1E",
+          "textPrimary": "#FFFFFF",
+          "textSecondary": "#BBBBBB",
+          "border": "#2A2A2A"
+        }
+      },
+      "typography": {
+        "fontFamily": {
+          "primary": ["Poppins", "Roboto", "System"],
+          "mono": ["Menlo", "Monaco", "Courier", "System"]
+        },
+        "scale": {
+          "h1": { "size": 24, "weight": "700", "lineHeight": 32, "letterSpacing": 0 },
+          "h2": { "size": 18, "weight": "600", "lineHeight": 26, "letterSpacing": 0 },
+          "h3": { "size": 16, "weight": "600", "lineHeight": 22, "letterSpacing": 0 },
+          "body": { "size": 14, "weight": "400", "lineHeight": 20, "letterSpacing": 0 },
+          "caption": { "size": 12, "weight": "400", "lineHeight": 16, "letterSpacing": 0 },
+          "button": { "size": 16, "weight": "600", "lineHeight": 20, "letterSpacing": 0.2 }
+        }
+      },
+      "space": {
+        "grid": "8pt",
+        "xs": 4,
+        "sm": 8,
+        "md": 12,
+        "lg": 16,
+        "xl": 24,
+        "xxl": 32
+      },
+      "radius": {
+        "sm": 8,
+        "md": 12,
+        "lg": 16,
+        "pill": 999
+      },
+      "size": {
+        "touchMin": 44,
+        "inputHeight": 48,
+        "headerHeight": 56,
+        "fab": 56,
+        "tabIcon": 24
+      },
+      "shadow": {
+        "card": {
+          "enabled": true,
+          "opacity": 0.08,
+          "radius": 8,
+          "offset": { "x": 0, "y": 2 },
+          "elevation": 2
+        },
+        "fab": {
+          "enabled": true,
+          "opacity": 0.16,
+          "radius": 12,
+          "offset": { "x": 0, "y": 6 },
+          "elevation": 6
+        }
+      }
+    },
+    "componentStyles": {
+      "screen": {
+        "padding": 16,
+        "backgroundColorToken": "tokens.color.neutral.bg"
+      },
+      "header": {
+        "heightToken": "tokens.size.headerHeight",
+        "backgroundColorToken": "tokens.color.neutral.surface",
+        "borderBottom": { "width": 1, "colorToken": "tokens.color.neutral.border" },
+        "titleTextStyleToken": "tokens.typography.scale.h2"
+      },
+      "card": {
+        "padding": 16,
+        "radiusToken": "tokens.radius.lg",
+        "backgroundColorToken": "tokens.color.neutral.surface",
+        "border": { "width": 1, "colorToken": "tokens.color.neutral.border" },
+        "shadowToken": "tokens.shadow.card"
+      },
+      "button": {
+        "primary": {
+          "heightToken": "tokens.size.inputHeight",
+          "radiusToken": "tokens.radius.md",
+          "bgToken": "tokens.color.brand.primary",
+          "textColorToken": "tokens.color.neutral.surface",
+          "textStyleToken": "tokens.typography.scale.button",
+          "paddingHorizontal": 16
+        },
+        "secondary": {
+          "heightToken": "tokens.size.inputHeight",
+          "radiusToken": "tokens.radius.md",
+          "bg": "transparent",
+          "border": { "width": 1, "colorToken": "tokens.color.brand.primary" },
+          "textColorToken": "tokens.color.brand.primary",
+          "textStyleToken": "tokens.typography.scale.button",
+          "paddingHorizontal": 16
+        },
+        "danger": {
+          "heightToken": "tokens.size.inputHeight",
+          "radiusToken": "tokens.radius.md",
+          "bgToken": "tokens.color.status.error",
+          "textColorToken": "tokens.color.neutral.surface",
+          "textStyleToken": "tokens.typography.scale.button"
+        }
+      },
+      "input": {
+        "default": {
+          "heightToken": "tokens.size.inputHeight",
+          "radiusToken": "tokens.radius.md",
+          "bgToken": "tokens.color.neutral.surface",
+          "border": { "width": 1, "colorToken": "tokens.color.neutral.border" },
+          "paddingHorizontal": 12,
+          "textColorToken": "tokens.color.neutral.textPrimary",
+          "placeholderColorToken": "tokens.color.neutral.textSecondary",
+          "labelTextStyleToken": "tokens.typography.scale.caption",
+          "helperTextStyleToken": "tokens.typography.scale.caption"
+        },
+        "error": {
+          "borderColorToken": "tokens.color.status.error",
+          "helperTextColorToken": "tokens.color.status.error"
+        }
+      },
+      "list": {
+        "row": {
+          "minHeight": 64,
+          "paddingHorizontal": 16,
+          "paddingVertical": 12,
+          "divider": { "enabled": true, "colorToken": "tokens.color.neutral.border" }
+        }
+      },
+      "progress": {
+        "budgetBar": {
+          "height": 10,
+          "radiusToken": "tokens.radius.pill",
+          "trackHex": "#E8EAF0",
+          "fillToken": "tokens.color.brand.secondary",
+          "thresholds": { "warning": 0.85, "error": 1.0 }
+        }
+      },
+      "navigation": {
+        "bottomTabs": {
+          "iconSizeToken": "tokens.size.tabIcon",
+          "activeTintToken": "tokens.color.brand.primary",
+          "inactiveTintToken": "tokens.color.neutral.muted",
+          "showLabels": true
+        },
+        "fab": {
+          "sizeToken": "tokens.size.fab",
+          "radiusToken": "tokens.radius.pill",
+          "bgToken": "tokens.color.brand.primary",
+          "iconColorToken": "tokens.color.neutral.surface",
+          "shadowToken": "tokens.shadow.fab"
+        }
+      }
+    },
+    "uxGuidelines": {
+      "principles": [
+        "Simple and clean UI",
+        "Clear hierarchy: titles > sections > content",
+        "One primary action per screen",
+        "Friendly empty states + CTA"
+      ],
+      "spacingRules": {
+        "screenPadding": 16,
+        "sectionGap": 24,
+        "cardGap": 12,
+        "fieldGap": 12,
+        "iconTextGap": 8,
+        "useOnly": [8, 12, 16, 24, 32]
+      },
+      "accessibility": {
+        "minTouchTargetPx": 44,
+        "avoidTinyTextBelowPx": 12,
+        "contrastNote": "Ensure text on primary buttons remains readable in both light and dark mode."
+      }
+    }
+  }
